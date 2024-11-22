@@ -8,8 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        burgundy: "#5F0B35",
+        gold: "#FFD700",
+      },
+      fontFamily: {
+        serif: ["Playfair Display", "serif"],
+        sans: ["Poppins", "sans-serif"],
       },
     },
   },
