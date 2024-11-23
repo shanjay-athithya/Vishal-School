@@ -1,73 +1,64 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion"; // Importing framer-motion for animations
 
 export default function Gallery() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(null);
+  const [currentImage, setCurrentImage] = useState(0);
 
   const images = [
-    "/images/img1.jpg",
-    "/images/img2.jpg",
-    "/images/img3.jpg",
-    "/images/img4.jpg",
-    "/images/img5.jpg",
-    "/images/img6.jpg",
+    "/s.jpeg",
+    "/school.jpeg",
+    "/s.jpeg",
+    "/school.jpeg",
+    "/s.jpeg",
+    "/school.jpeg",
   ];
 
-  const openModal = (image) => {
-    setCurrentImage(image);
-    setModalOpen(true);
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % images.length);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-    setCurrentImage(null);
+  const prevImage = () => {
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
   return (
-    <section id="gallery" className="py-16 bg-bl text-burgundy">
+    <section id="gallery" className="py-16 bg-burgundy text-bl">
       <div className="container mx-auto px-6 md:px-12">
         {/* Section Title */}
         <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-12">
           Photo Gallery
         </h2>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {images.map((image, index) => (
-            <div key={index} className="relative group">
-              <img
-                src={image}
-                alt={`Gallery Image ${index + 1}`}
-                className="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-500 transform group-hover:scale-105"
-                onClick={() => openModal(image)}
-              />
-              <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
-                <span className="text-white text-lg font-semibold">Click to View</span>
-              </div>
-            </div>
-          ))}
+        {/* Gallery Image with Scroll Animation */}
+        <div className="relative w-full h-96 overflow-hidden">
+          <motion.img
+            src={images[currentImage]}
+            alt={`Gallery Image ${currentImage + 1}`}
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }} // Adding fade-in animation
+          />
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="flex justify-center space-x-6 mt-6">
+          <button
+            onClick={prevImage}
+            className="text-white text-2xl font-bold bg-burgundy p-2 rounded-full shadow-lg hover:bg-opacity-80"
+          >
+            &#8249; Prev
+          </button>
+          <button
+            onClick={nextImage}
+            className="text-white text-2xl font-bold bg-burgundy p-2 rounded-full shadow-lg hover:bg-opacity-80"
+          >
+            Next &#8250;
+          </button>
         </div>
       </div>
-
-      {/* Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="relative max-w-3xl mx-auto">
-            <img
-              src={currentImage}
-              alt="Selected Image"
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-white text-3xl font-bold"
-            >
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
