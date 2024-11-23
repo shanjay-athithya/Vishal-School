@@ -11,6 +11,7 @@ module.exports = {
         burgundy: "#5F0B35",
         gold: "#FFD700",
         bl : "#66ffff",
+        vl :"#9F6D86"
       },
       fontFamily: {
         serif: ["Playfair Display", "serif"],
