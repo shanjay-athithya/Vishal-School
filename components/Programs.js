@@ -10,7 +10,7 @@ export default function Programs() {
     },
     {
       title: "Commerce Stream",
-      description: "Learn the fundamentals of business, accounting, and economics for a successful future.",
+      description: "Learn the fundamentals of business, accounting for a successful future.",
       icon: "💼",
     },
     {
@@ -30,7 +30,7 @@ export default function Programs() {
       <div className="container mx-auto px-6 md:px-12">
         {/* Section Title */}
         <motion.h2
-          className="text-4xl md:text-5xl font-serif font-bold text-center mb-12"
+          className="text-4xl  md:text-5xl font-serif font-bold text-center mt-4 mb-14"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -38,24 +38,26 @@ export default function Programs() {
           Our Programs
         </motion.h2>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Cards Diagonal Layout */}
+        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-y-16">
           {programs.map((program, index) => (
             <motion.div
               key={index}
-              className="p-6 bg-gray-100 rounded-lg shadow-lg text-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              className={`p-6 bg-burgundy rounded-lg shadow-lg text-center ${
+                index % 2 === 0 ? "ml-0" : "ml-auto"
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
               {/* Icon */}
               <div className="text-6xl mb-4">{program.icon}</div>
 
               {/* Title */}
-              <h3 className="text-2xl font-semibold mb-2">{program.title}</h3>
+              <h3 className="text-2xl text-bl font-semibold mb-2">{program.title}</h3>
 
               {/* Description */}
-              <p className="text-gray-700">{program.description}</p>
+              <p className="text-white">{program.description}</p>
             </motion.div>
           ))}
         </div>
