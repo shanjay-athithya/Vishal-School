@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion"; // Importing framer-motion for animations
 
 export default function Gallery() {
@@ -14,19 +14,31 @@ export default function Gallery() {
     "/school.jpeg",
   ];
 
+  // Function to move to the next image
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % images.length);
   };
 
+  // Function to move to the previous image
   const prevImage = () => {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
+
+  // Automatically change images every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 5000); // Change image every 5 seconds
+
+    // Cleanup the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="gallery" className="py-16 bg-burgundy text-bl">
       <div className="container mx-auto px-6 md:px-12">
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mt-4 mb-14">
           Photo Gallery
         </h2>
 
