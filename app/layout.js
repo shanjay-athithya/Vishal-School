@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata = {
   title: "Vishal Bharti School",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
       <body>
         <Header/>
         {children}
+        <Footer />
       </body>
     </html>
   );
