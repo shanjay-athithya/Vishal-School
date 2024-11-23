@@ -1,13 +1,13 @@
 export default function AboutUs() {
     return (
-      <section id="about" className="py-16 bg-burgundy text-white">
+      <section id="about" className="py-16 bg-burgundy text-bl">
         <div className="container mx-auto px-6 md:px-12">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-14 mt-4">
             <h2 className="text-4xl md:text-5xl font-serif font-bold">
               About Us
             </h2>
-            <p className="text-lg md:text-xl mt-4 text-bl">
+            <p className="text-lg text-white md:text-xl mt-4">
               Learn more about our mission, vision, and commitment to excellence.
             </p>
           </div>
@@ -24,7 +24,7 @@ export default function AboutUs() {
             </div>
   
             {/* Text Section */}
-            <div className="w-full md:w-1/2 text-lg text-white leading-relaxed space-y-6">
+            <div className="w-full text-bl md:w-1/2 text-lg text-white leading-relaxed space-y-6">
               <p>
                 At Vishal Bharti Senior Secondary School, we cultivate an environment where dreams take flight and lifelong learning begins. We focus on academic excellence while fostering creativity and strong moral values.
               </p>
